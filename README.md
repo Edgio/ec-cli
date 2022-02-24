@@ -29,7 +29,7 @@ In addition to using flags to provide inputs, you may also provide JSON input:
 $ ec origin getallorigins --input='{AccountNumber:ABCD, MediaTypeID=3}'
 ```
 
-To view the top-level documentation for the CLI, use the `help` command:
+To view the top-level documentation for the CLI including all available commands, use the `help` command:
 ```
 $ ec help
 ```
