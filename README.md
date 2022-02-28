@@ -8,9 +8,9 @@ This is the official command line interface (CLI) for EdgeCast.
 - Go 1.17
 
 ### Installation
-To install the CLI, use the makefile:
+To install the CLI, download and run the install script:
 ```
-$ make install
+[Download URL TBD]
 ```
 
 ### Using the CLI
