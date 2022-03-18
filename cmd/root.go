@@ -7,8 +7,6 @@ import (
 )
 
 func Execute() {
-	cobra.OnInitialize()
-
 	rootCmd := &cobra.Command{
 		Use:   "EC CLI",
 		Short: "EC CLI",
