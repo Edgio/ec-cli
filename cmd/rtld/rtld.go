@@ -3,13 +3,13 @@ package rtld
 import (
 	"log"
 
-	"github.com/spf13/cobra"
-
 	"github.com/edgecast/ec-cli/cmd/rtld/lookups"
 	"github.com/edgecast/ec-cli/cmd/rtld/profiles_cdn"
 	"github.com/edgecast/ec-cli/cmd/rtld/profiles_rl"
 	"github.com/edgecast/ec-cli/cmd/rtld/profiles_waf"
 	"github.com/edgecast/ec-cli/cmd/rtld/settings_internal"
+
+	"github.com/spf13/cobra"
 )
 
 func Root() *cobra.Command {
