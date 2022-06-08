@@ -17,7 +17,8 @@ func ParseInputParams[T any](c *cobra.Command, target *T) {
 	)
 
 	file := c.Flag("input-params-json-file").Value.String()
-	if file != "{}" {
+
+	if len(file) > 0 {
 		if !IsFile(file) {
 			fmt.Println("input error: params file does not exist.. ", file)
 
@@ -43,7 +44,6 @@ func DisplayResponse(obj any) {
 }
 
 func Check(err error) {
-	fmt.Println("error in unmarshall?:", err)
 	if err != nil {
 		fmt.Println(err)
 		log.Fatal(err)
