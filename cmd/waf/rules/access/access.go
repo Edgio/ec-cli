@@ -1,20 +1,13 @@
 // Copyright 2022 Edgecast Inc., Licensed under the terms of the Apache 2.0
 // license. See LICENSE file in project root for terms.
-package access_rules
+package access
 
 import (
 	"github.com/EdgeCast/ec-sdk-go/edgecast"
 	"github.com/EdgeCast/ec-sdk-go/edgecast/waf"
-	"github.com/EdgeCast/ec-sdk-go/edgecast/waf/access_rules"
+	"github.com/EdgeCast/ec-sdk-go/edgecast/waf/rules/access"
 	"github.com/edgecast/ec-cli/cmd/internal"
 	"github.com/spf13/cobra"
-)
-
-const (
-	jsonUsage         = "input data formatted in JSON"
-	jsonFlagName      = "input-params-json"
-	jsonFlagShortName = "i"
-	jsonFlagValue     = "{}"
 )
 
 func createClient() *waf.WafService {
@@ -32,12 +25,12 @@ func createClient() *waf.WafService {
 	)
 }
 
-// Root returns the access_rules root command
+// Root returns the access root command
 func Root() *cobra.Command {
 	rootCmd := &cobra.Command{
-		Use:   "access_rules",
-		Short: "access_rules",
-		Long:  "access_rules",
+		Use:   "access",
+		Short: "access",
+		Long:  "access",
 		Run: func(cmd *cobra.Command, args []string) {
 			internal.Check(
 				cmd.Help(),
@@ -51,10 +44,10 @@ func Root() *cobra.Command {
 		Long:  "AddAccessRule",
 		Run: func(cmd *cobra.Command, args []string) {
 			wafService := createClient()
-			var params *access_rules.AddAccessRuleParams
-			internal.ParseInputParams(cmd, params)
+			var params access.AddAccessRuleParams
+			internal.ParseInputParams(cmd, &params)
 			result := internal.CheckResult(
-				wafService.AccessRules.AddAccessRule(params),
+				wafService.Access.AddAccessRule(params),
 			)
 			internal.DisplayResponse(result)
 
@@ -62,11 +55,10 @@ func Root() *cobra.Command {
 	}
 
 	cmdAddAccessRule.Flags().StringP(
-		jsonFlagName,
-		jsonFlagShortName,
-		jsonFlagValue,
-		jsonUsage)
-
+		"input-params-json",
+		"i",
+		"{}",
+		"input data formatted in JSON")
 	rootCmd.AddCommand(cmdAddAccessRule)
 
 	cmdDeleteAccessRule := &cobra.Command{
@@ -75,21 +67,20 @@ func Root() *cobra.Command {
 		Long:  "DeleteAccessRule",
 		Run: func(cmd *cobra.Command, args []string) {
 			wafService := createClient()
-			var params *access_rules.DeleteAccessRuleParams
-			internal.ParseInputParams(cmd, params)
+			var params access.DeleteAccessRuleParams
+			internal.ParseInputParams(cmd, &params)
 			internal.Check(
-				wafService.AccessRules.DeleteAccessRule(params),
+				wafService.Access.DeleteAccessRule(params),
 			)
 
 		},
 	}
 
 	cmdDeleteAccessRule.Flags().StringP(
-		jsonFlagName,
-		jsonFlagShortName,
-		jsonFlagValue,
-		jsonUsage)
-
+		"input-params-json",
+		"i",
+		"{}",
+		"input data formatted in JSON")
 	rootCmd.AddCommand(cmdDeleteAccessRule)
 
 	cmdGetAccessRule := &cobra.Command{
@@ -98,10 +89,10 @@ func Root() *cobra.Command {
 		Long:  "GetAccessRule",
 		Run: func(cmd *cobra.Command, args []string) {
 			wafService := createClient()
-			var params *access_rules.GetAccessRuleParams
-			internal.ParseInputParams(cmd, params)
+			var params access.GetAccessRuleParams
+			internal.ParseInputParams(cmd, &params)
 			result := internal.CheckResult(
-				wafService.AccessRules.GetAccessRule(params),
+				wafService.Access.GetAccessRule(params),
 			)
 			internal.DisplayResponse(result)
 
@@ -109,11 +100,10 @@ func Root() *cobra.Command {
 	}
 
 	cmdGetAccessRule.Flags().StringP(
-		jsonFlagName,
-		jsonFlagShortName,
-		jsonFlagValue,
-		jsonUsage)
-
+		"input-params-json",
+		"i",
+		"{}",
+		"input data formatted in JSON")
 	rootCmd.AddCommand(cmdGetAccessRule)
 
 	cmdGetAllAccessRules := &cobra.Command{
@@ -122,10 +112,10 @@ func Root() *cobra.Command {
 		Long:  "GetAllAccessRules",
 		Run: func(cmd *cobra.Command, args []string) {
 			wafService := createClient()
-			var params *access_rules.GetAllAccessRulesParams
-			internal.ParseInputParams(cmd, params)
+			var params access.GetAllAccessRulesParams
+			internal.ParseInputParams(cmd, &params)
 			result := internal.CheckResult(
-				wafService.AccessRules.GetAllAccessRules(params),
+				wafService.Access.GetAllAccessRules(params),
 			)
 			internal.DisplayResponse(result)
 
@@ -133,11 +123,10 @@ func Root() *cobra.Command {
 	}
 
 	cmdGetAllAccessRules.Flags().StringP(
-		jsonFlagName,
-		jsonFlagShortName,
-		jsonFlagValue,
-		jsonUsage)
-
+		"input-params-json",
+		"i",
+		"{}",
+		"input data formatted in JSON")
 	rootCmd.AddCommand(cmdGetAllAccessRules)
 
 	cmdUpdateAccessRule := &cobra.Command{
@@ -146,21 +135,20 @@ func Root() *cobra.Command {
 		Long:  "UpdateAccessRule",
 		Run: func(cmd *cobra.Command, args []string) {
 			wafService := createClient()
-			var params *access_rules.UpdateAccessRuleParams
-			internal.ParseInputParams(cmd, params)
+			var params access.UpdateAccessRuleParams
+			internal.ParseInputParams(cmd, &params)
 			internal.Check(
-				wafService.AccessRules.UpdateAccessRule(params),
+				wafService.Access.UpdateAccessRule(params),
 			)
 
 		},
 	}
 
 	cmdUpdateAccessRule.Flags().StringP(
-		jsonFlagName,
-		jsonFlagShortName,
-		jsonFlagValue,
-		jsonUsage)
-
+		"input-params-json",
+		"i",
+		"{}",
+		"input data formatted in JSON")
 	rootCmd.AddCommand(cmdUpdateAccessRule)
 
 	return rootCmd

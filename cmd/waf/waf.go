@@ -1,3 +1,5 @@
+// Copyright 2022 Edgecast Inc., Licensed under the terms of the Apache 2.0
+// license. See LICENSE file in project root for terms.
 package waf
 
 import (
@@ -5,11 +7,11 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/edgecast/ec-cli/cmd/waf/access_rules"
-	"github.com/edgecast/ec-cli/cmd/waf/bot_rule_sets"
-	"github.com/edgecast/ec-cli/cmd/waf/custom_rule_sets"
-	"github.com/edgecast/ec-cli/cmd/waf/managed_rules"
-	"github.com/edgecast/ec-cli/cmd/waf/rate_rules"
+	"github.com/edgecast/ec-cli/cmd/waf/rules/access"
+	"github.com/edgecast/ec-cli/cmd/waf/rules/bot"
+	"github.com/edgecast/ec-cli/cmd/waf/rules/custom"
+	"github.com/edgecast/ec-cli/cmd/waf/rules/managed"
+	"github.com/edgecast/ec-cli/cmd/waf/rules/rate"
 	"github.com/edgecast/ec-cli/cmd/waf/scopes"
 )
 
@@ -26,11 +28,11 @@ func Root() *cobra.Command {
 		},
 	}
 
-	root.AddCommand(access_rules.Root())
-	root.AddCommand(bot_rule_sets.Root())
-	root.AddCommand(custom_rule_sets.Root())
-	root.AddCommand(managed_rules.Root())
-	root.AddCommand(rate_rules.Root())
+	root.AddCommand(access.Root())
+	root.AddCommand(bot.Root())
+	root.AddCommand(custom.Root())
+	root.AddCommand(managed.Root())
+	root.AddCommand(rate.Root())
 	root.AddCommand(scopes.Root())
 
 	return root

@@ -10,13 +10,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const (
-	jsonUsage         = "input data formatted in JSON"
-	jsonFlagName      = "input-params-json"
-	jsonFlagShortName = "i"
-	jsonFlagValue     = "{}"
-)
-
 func createClient() *waf.WafService {
 	idsCredentials := edgecast.IDSCredentials{
 		ClientID:     "",
@@ -51,8 +44,8 @@ func Root() *cobra.Command {
 		Long:  "GetAllScopes",
 		Run: func(cmd *cobra.Command, args []string) {
 			wafService := createClient()
-			var params *scopes.GetAllScopesParams
-			internal.ParseInputParams(cmd, params)
+			var params scopes.GetAllScopesParams
+			internal.ParseInputParams(cmd, &params)
 			result := internal.CheckResult(
 				wafService.Scopes.GetAllScopes(params),
 			)
@@ -62,11 +55,10 @@ func Root() *cobra.Command {
 	}
 
 	cmdGetAllScopes.Flags().StringP(
-		jsonFlagName,
-		jsonFlagShortName,
-		jsonFlagValue,
-		jsonUsage)
-
+		"input-params-json",
+		"i",
+		"{}",
+		"input data formatted in JSON")
 	rootCmd.AddCommand(cmdGetAllScopes)
 
 	cmdModifyAllScopes := &cobra.Command{
@@ -75,8 +67,8 @@ func Root() *cobra.Command {
 		Long:  "ModifyAllScopes",
 		Run: func(cmd *cobra.Command, args []string) {
 			wafService := createClient()
-			var params *scopes.Scopes
-			internal.ParseInputParams(cmd, params)
+			var params scopes.Scopes
+			internal.ParseInputParams(cmd, &params)
 			result := internal.CheckResult(
 				wafService.Scopes.ModifyAllScopes(params),
 			)
@@ -86,11 +78,10 @@ func Root() *cobra.Command {
 	}
 
 	cmdModifyAllScopes.Flags().StringP(
-		jsonFlagName,
-		jsonFlagShortName,
-		jsonFlagValue,
-		jsonUsage)
-
+		"input-params-json",
+		"i",
+		"{}",
+		"input data formatted in JSON")
 	rootCmd.AddCommand(cmdModifyAllScopes)
 
 	return rootCmd
