@@ -20,7 +20,7 @@ func ParseInputParams[T any](c *cobra.Command, target *T) {
 
 func DisplayResponse(obj any) {
 	bytes := CheckResult(
-		json.MarshalIndent(obj, "", "\t"), //nolint: errchkjson
+		json.MarshalIndent(obj, "", "\t"),
 	)
 	fmt.Printf("%s\n", string(bytes)) //nolint: forbidigo
 }

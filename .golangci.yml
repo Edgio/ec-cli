@@ -6,3 +6,4 @@ linters:
     - scopelint
     - golint
     - exhaustivestruct
+    - exhaustruct

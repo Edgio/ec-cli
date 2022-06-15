@@ -66,7 +66,6 @@ func registerAddAccessRule(rootCmd *cobra.Command) {
 				wafService.Access.AddAccessRule(params),
 			)
 			internal.DisplayResponse(result)
-
 		},
 	}
 
@@ -78,6 +77,7 @@ func registerAddAccessRule(rootCmd *cobra.Command) {
 
 	rootCmd.AddCommand(cmd)
 }
+
 func registerDeleteAccessRule(rootCmd *cobra.Command) {
 	cmd := &cobra.Command{
 		Use:   "DeleteAccessRule",
@@ -90,7 +90,6 @@ func registerDeleteAccessRule(rootCmd *cobra.Command) {
 			internal.Check(
 				wafService.Access.DeleteAccessRule(params),
 			)
-
 		},
 	}
 
@@ -102,6 +101,7 @@ func registerDeleteAccessRule(rootCmd *cobra.Command) {
 
 	rootCmd.AddCommand(cmd)
 }
+
 func registerGetAccessRule(rootCmd *cobra.Command) {
 	cmd := &cobra.Command{
 		Use:   "GetAccessRule",
@@ -115,7 +115,6 @@ func registerGetAccessRule(rootCmd *cobra.Command) {
 				wafService.Access.GetAccessRule(params),
 			)
 			internal.DisplayResponse(result)
-
 		},
 	}
 
@@ -127,6 +126,7 @@ func registerGetAccessRule(rootCmd *cobra.Command) {
 
 	rootCmd.AddCommand(cmd)
 }
+
 func registerGetAllAccessRules(rootCmd *cobra.Command) {
 	cmd := &cobra.Command{
 		Use:   "GetAllAccessRules",
@@ -140,7 +140,6 @@ func registerGetAllAccessRules(rootCmd *cobra.Command) {
 				wafService.Access.GetAllAccessRules(params),
 			)
 			internal.DisplayResponse(result)
-
 		},
 	}
 
@@ -152,6 +151,7 @@ func registerGetAllAccessRules(rootCmd *cobra.Command) {
 
 	rootCmd.AddCommand(cmd)
 }
+
 func registerUpdateAccessRule(rootCmd *cobra.Command) {
 	cmd := &cobra.Command{
 		Use:   "UpdateAccessRule",
@@ -164,7 +164,6 @@ func registerUpdateAccessRule(rootCmd *cobra.Command) {
 			internal.Check(
 				wafService.Access.UpdateAccessRule(params),
 			)
-
 		},
 	}
 
