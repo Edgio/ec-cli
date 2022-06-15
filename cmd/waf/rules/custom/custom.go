@@ -2,6 +2,8 @@
 // license. See LICENSE file in project root for terms.
 package custom
 
+// This file is auto-generated. Modifications to this file may be overwritten.
+
 import (
     "github.com/EdgeCast/ec-sdk-go/edgecast"
     "github.com/EdgeCast/ec-sdk-go/edgecast/waf"
@@ -25,20 +27,34 @@ func createClient() *waf.WafService {
 	)
 }
 
-// Root returns the custom root command
+// Root returns the custom root command.
 func Root() *cobra.Command {
-    rootCmd := &cobra.Command{
-        Use:   "custom",
-        Short: "custom",
-        Long: "custom",
-        Run: func(cmd *cobra.Command, args []string) {
+    rootCmd := createRootCmd()
+    
+    registerAddCustomRuleSet(rootCmd)
+    registerDeleteCustomRuleSet(rootCmd)
+    registerGetAllCustomRuleSets(rootCmd)
+    registerGetCustomRuleSet(rootCmd)
+    registerUpdateCustomRuleSet(rootCmd)
+    
+    return rootCmd
+}
+
+func createRootCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "access",
+		Short: "access",
+		Long:  "access",
+		Run: func(cmd *cobra.Command, args []string) {
 			internal.Check(
 				cmd.Help(),
 			)
 		},
-    }
-    
-    cmdAddCustomRuleSet := &cobra.Command{
+	}
+}
+
+func registerAddCustomRuleSet(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "AddCustomRuleSet",
         Short: "AddCustomRuleSet",
         Long:  "AddCustomRuleSet",
@@ -54,14 +70,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdAddCustomRuleSet.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdAddCustomRuleSet)
-    
-    cmdDeleteCustomRuleSet := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerDeleteCustomRuleSet(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "DeleteCustomRuleSet",
         Short: "DeleteCustomRuleSet",
         Long:  "DeleteCustomRuleSet",
@@ -76,14 +94,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdDeleteCustomRuleSet.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdDeleteCustomRuleSet)
-    
-    cmdGetAllCustomRuleSets := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerGetAllCustomRuleSets(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "GetAllCustomRuleSets",
         Short: "GetAllCustomRuleSets",
         Long:  "GetAllCustomRuleSets",
@@ -99,14 +119,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdGetAllCustomRuleSets.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdGetAllCustomRuleSets)
-    
-    cmdGetCustomRuleSet := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerGetCustomRuleSet(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "GetCustomRuleSet",
         Short: "GetCustomRuleSet",
         Long:  "GetCustomRuleSet",
@@ -122,14 +144,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdGetCustomRuleSet.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdGetCustomRuleSet)
-    
-    cmdUpdateCustomRuleSet := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerUpdateCustomRuleSet(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "UpdateCustomRuleSet",
         Short: "UpdateCustomRuleSet",
         Long:  "UpdateCustomRuleSet",
@@ -144,12 +168,11 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdUpdateCustomRuleSet.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdUpdateCustomRuleSet)
-    
-    return rootCmd
+
+    rootCmd.AddCommand(cmd)
 }

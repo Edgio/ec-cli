@@ -2,6 +2,8 @@
 // license. See LICENSE file in project root for terms.
 package managed
 
+// This file is auto-generated. Modifications to this file may be overwritten.
+
 import (
     "github.com/EdgeCast/ec-sdk-go/edgecast"
     "github.com/EdgeCast/ec-sdk-go/edgecast/waf"
@@ -25,20 +27,34 @@ func createClient() *waf.WafService {
 	)
 }
 
-// Root returns the managed root command
+// Root returns the managed root command.
 func Root() *cobra.Command {
-    rootCmd := &cobra.Command{
-        Use:   "managed",
-        Short: "managed",
-        Long: "managed",
-        Run: func(cmd *cobra.Command, args []string) {
+    rootCmd := createRootCmd()
+    
+    registerAddManagedRule(rootCmd)
+    registerDeleteManagedRule(rootCmd)
+    registerGetAllManagedRules(rootCmd)
+    registerGetManagedRule(rootCmd)
+    registerUpdateManagedRule(rootCmd)
+    
+    return rootCmd
+}
+
+func createRootCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "access",
+		Short: "access",
+		Long:  "access",
+		Run: func(cmd *cobra.Command, args []string) {
 			internal.Check(
 				cmd.Help(),
 			)
 		},
-    }
-    
-    cmdAddManagedRule := &cobra.Command{
+	}
+}
+
+func registerAddManagedRule(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "AddManagedRule",
         Short: "AddManagedRule",
         Long:  "AddManagedRule",
@@ -54,14 +70,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdAddManagedRule.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdAddManagedRule)
-    
-    cmdDeleteManagedRule := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerDeleteManagedRule(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "DeleteManagedRule",
         Short: "DeleteManagedRule",
         Long:  "DeleteManagedRule",
@@ -76,14 +94,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdDeleteManagedRule.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdDeleteManagedRule)
-    
-    cmdGetAllManagedRules := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerGetAllManagedRules(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "GetAllManagedRules",
         Short: "GetAllManagedRules",
         Long:  "GetAllManagedRules",
@@ -99,14 +119,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdGetAllManagedRules.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdGetAllManagedRules)
-    
-    cmdGetManagedRule := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerGetManagedRule(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "GetManagedRule",
         Short: "GetManagedRule",
         Long:  "GetManagedRule",
@@ -122,14 +144,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdGetManagedRule.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdGetManagedRule)
-    
-    cmdUpdateManagedRule := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerUpdateManagedRule(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "UpdateManagedRule",
         Short: "UpdateManagedRule",
         Long:  "UpdateManagedRule",
@@ -144,12 +168,11 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdUpdateManagedRule.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdUpdateManagedRule)
-    
-    return rootCmd
+
+    rootCmd.AddCommand(cmd)
 }

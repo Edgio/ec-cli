@@ -2,6 +2,8 @@
 // license. See LICENSE file in project root for terms.
 package rate
 
+// This file is auto-generated. Modifications to this file may be overwritten.
+
 import (
     "github.com/EdgeCast/ec-sdk-go/edgecast"
     "github.com/EdgeCast/ec-sdk-go/edgecast/waf"
@@ -25,20 +27,34 @@ func createClient() *waf.WafService {
 	)
 }
 
-// Root returns the rate root command
+// Root returns the rate root command.
 func Root() *cobra.Command {
-    rootCmd := &cobra.Command{
-        Use:   "rate",
-        Short: "rate",
-        Long: "rate",
-        Run: func(cmd *cobra.Command, args []string) {
+    rootCmd := createRootCmd()
+    
+    registerAddRateRule(rootCmd)
+    registerDeleteRateRule(rootCmd)
+    registerGetAllRateRules(rootCmd)
+    registerGetRateRule(rootCmd)
+    registerUpdateRateRule(rootCmd)
+    
+    return rootCmd
+}
+
+func createRootCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "access",
+		Short: "access",
+		Long:  "access",
+		Run: func(cmd *cobra.Command, args []string) {
 			internal.Check(
 				cmd.Help(),
 			)
 		},
-    }
-    
-    cmdAddRateRule := &cobra.Command{
+	}
+}
+
+func registerAddRateRule(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "AddRateRule",
         Short: "AddRateRule",
         Long:  "AddRateRule",
@@ -54,14 +70,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdAddRateRule.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdAddRateRule)
-    
-    cmdDeleteRateRule := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerDeleteRateRule(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "DeleteRateRule",
         Short: "DeleteRateRule",
         Long:  "DeleteRateRule",
@@ -76,14 +94,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdDeleteRateRule.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdDeleteRateRule)
-    
-    cmdGetAllRateRules := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerGetAllRateRules(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "GetAllRateRules",
         Short: "GetAllRateRules",
         Long:  "GetAllRateRules",
@@ -99,14 +119,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdGetAllRateRules.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdGetAllRateRules)
-    
-    cmdGetRateRule := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerGetRateRule(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "GetRateRule",
         Short: "GetRateRule",
         Long:  "GetRateRule",
@@ -122,14 +144,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdGetRateRule.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdGetRateRule)
-    
-    cmdUpdateRateRule := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerUpdateRateRule(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "UpdateRateRule",
         Short: "UpdateRateRule",
         Long:  "UpdateRateRule",
@@ -144,12 +168,11 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdUpdateRateRule.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdUpdateRateRule)
-    
-    return rootCmd
+
+    rootCmd.AddCommand(cmd)
 }

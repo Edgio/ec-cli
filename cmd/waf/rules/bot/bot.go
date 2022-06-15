@@ -2,6 +2,8 @@
 // license. See LICENSE file in project root for terms.
 package bot
 
+// This file is auto-generated. Modifications to this file may be overwritten.
+
 import (
     "github.com/EdgeCast/ec-sdk-go/edgecast"
     "github.com/EdgeCast/ec-sdk-go/edgecast/waf"
@@ -25,20 +27,34 @@ func createClient() *waf.WafService {
 	)
 }
 
-// Root returns the bot root command
+// Root returns the bot root command.
 func Root() *cobra.Command {
-    rootCmd := &cobra.Command{
-        Use:   "bot",
-        Short: "bot",
-        Long: "bot",
-        Run: func(cmd *cobra.Command, args []string) {
+    rootCmd := createRootCmd()
+    
+    registerAddBotRuleSet(rootCmd)
+    registerDeleteBotRuleSet(rootCmd)
+    registerGetAllBotRuleSets(rootCmd)
+    registerGetBotRuleSet(rootCmd)
+    registerUpdateBotRuleSet(rootCmd)
+    
+    return rootCmd
+}
+
+func createRootCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "access",
+		Short: "access",
+		Long:  "access",
+		Run: func(cmd *cobra.Command, args []string) {
 			internal.Check(
 				cmd.Help(),
 			)
 		},
-    }
-    
-    cmdAddBotRuleSet := &cobra.Command{
+	}
+}
+
+func registerAddBotRuleSet(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "AddBotRuleSet",
         Short: "AddBotRuleSet",
         Long:  "AddBotRuleSet",
@@ -54,14 +70,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdAddBotRuleSet.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdAddBotRuleSet)
-    
-    cmdDeleteBotRuleSet := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerDeleteBotRuleSet(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "DeleteBotRuleSet",
         Short: "DeleteBotRuleSet",
         Long:  "DeleteBotRuleSet",
@@ -76,14 +94,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdDeleteBotRuleSet.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdDeleteBotRuleSet)
-    
-    cmdGetAllBotRuleSets := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerGetAllBotRuleSets(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "GetAllBotRuleSets",
         Short: "GetAllBotRuleSets",
         Long:  "GetAllBotRuleSets",
@@ -99,14 +119,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdGetAllBotRuleSets.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdGetAllBotRuleSets)
-    
-    cmdGetBotRuleSet := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerGetBotRuleSet(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "GetBotRuleSet",
         Short: "GetBotRuleSet",
         Long:  "GetBotRuleSet",
@@ -122,14 +144,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdGetBotRuleSet.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdGetBotRuleSet)
-    
-    cmdUpdateBotRuleSet := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerUpdateBotRuleSet(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "UpdateBotRuleSet",
         Short: "UpdateBotRuleSet",
         Long:  "UpdateBotRuleSet",
@@ -144,12 +168,11 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdUpdateBotRuleSet.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdUpdateBotRuleSet)
-    
-    return rootCmd
+
+    rootCmd.AddCommand(cmd)
 }

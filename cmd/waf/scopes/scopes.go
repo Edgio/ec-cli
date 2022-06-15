@@ -2,6 +2,8 @@
 // license. See LICENSE file in project root for terms.
 package scopes
 
+// This file is auto-generated. Modifications to this file may be overwritten.
+
 import (
     "github.com/EdgeCast/ec-sdk-go/edgecast"
     "github.com/EdgeCast/ec-sdk-go/edgecast/waf"
@@ -25,20 +27,31 @@ func createClient() *waf.WafService {
 	)
 }
 
-// Root returns the scopes root command
+// Root returns the scopes root command.
 func Root() *cobra.Command {
-    rootCmd := &cobra.Command{
-        Use:   "scopes",
-        Short: "scopes",
-        Long: "scopes",
-        Run: func(cmd *cobra.Command, args []string) {
+    rootCmd := createRootCmd()
+    
+    registerGetAllScopes(rootCmd)
+    registerModifyAllScopes(rootCmd)
+    
+    return rootCmd
+}
+
+func createRootCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "access",
+		Short: "access",
+		Long:  "access",
+		Run: func(cmd *cobra.Command, args []string) {
 			internal.Check(
 				cmd.Help(),
 			)
 		},
-    }
-    
-    cmdGetAllScopes := &cobra.Command{
+	}
+}
+
+func registerGetAllScopes(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "GetAllScopes",
         Short: "GetAllScopes",
         Long:  "GetAllScopes",
@@ -54,14 +67,16 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdGetAllScopes.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdGetAllScopes)
-    
-    cmdModifyAllScopes := &cobra.Command{
+
+    rootCmd.AddCommand(cmd)
+}
+func registerModifyAllScopes(rootCmd *cobra.Command) {
+	cmd := &cobra.Command{
         Use:   "ModifyAllScopes",
         Short: "ModifyAllScopes",
         Long:  "ModifyAllScopes",
@@ -77,12 +92,11 @@ func Root() *cobra.Command {
             },
     }
     
-    cmdModifyAllScopes.Flags().StringP(
+    cmd.Flags().StringP(
         "input-params-json", 
         "i", 
         "{}", 
         "input data formatted in JSON")
-    rootCmd.AddCommand(cmdModifyAllScopes)
-    
-    return rootCmd
+
+    rootCmd.AddCommand(cmd)
 }

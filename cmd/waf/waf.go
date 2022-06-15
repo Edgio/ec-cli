@@ -2,16 +2,18 @@
 // license. See LICENSE file in project root for terms.
 package waf
 
+// This file is auto-generated. Modifications to this file may be overwritten.
+
 import (
     "log"
 
     "github.com/spf13/cobra"
     
+    "github.com/edgecast/ec-cli/cmd/waf/rules/managed"
+    "github.com/edgecast/ec-cli/cmd/waf/rules/rate"
     "github.com/edgecast/ec-cli/cmd/waf/rules/access"
     "github.com/edgecast/ec-cli/cmd/waf/rules/bot"
     "github.com/edgecast/ec-cli/cmd/waf/rules/custom"
-    "github.com/edgecast/ec-cli/cmd/waf/rules/managed"
-    "github.com/edgecast/ec-cli/cmd/waf/rules/rate"
     "github.com/edgecast/ec-cli/cmd/waf/scopes"
 )
 
@@ -28,11 +30,11 @@ func Root() *cobra.Command {
         },
     }
     
+	root.AddCommand(managed.Root())
+	root.AddCommand(rate.Root())
 	root.AddCommand(access.Root())
 	root.AddCommand(bot.Root())
 	root.AddCommand(custom.Root())
-	root.AddCommand(managed.Root())
-	root.AddCommand(rate.Root())
 	root.AddCommand(scopes.Root())
 
 	return root

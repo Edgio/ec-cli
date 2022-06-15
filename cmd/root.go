@@ -1,9 +1,10 @@
+// Copyright 2022 Edgecast Inc., Licensed under the terms of the Apache 2.0
+// license. See LICENSE file in project root for terms.
 package cmd
 
 import (
 	"log"
 
-	"github.com/edgecast/ec-cli/cmd/waf"
 	"github.com/spf13/cobra"
 )
 
@@ -15,7 +16,7 @@ func Execute() {
 		products and services.`,
 	}
 
-	rootCmd.AddCommand(waf.Root())
+	addSdkCommands(rootCmd)
 
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatal(err)
