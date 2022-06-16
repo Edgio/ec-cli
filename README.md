@@ -5,7 +5,7 @@ This is the official command line interface (CLI) for EdgeCast.
 ## Getting Started
 
 ### Requirements
-- Go 1.17
+- Go 1.18
 
 ### Installation
 To install the CLI, download and run the install script:
