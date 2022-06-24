@@ -1,0 +1,36 @@
+# https://taskfile.dev
+version: '3'
+
+
+dotenv: ['.env']
+
+
+includes:
+  integration_test:
+    desc: runs all integration tests
+    taskfile: ./test/integration/Taskfile.yaml
+    dir: ./test/integration
+
+
+tasks:
+  build:
+    desc: builds the CLI
+    cmds:
+      - go build -o cli
+
+  lint:
+    desc: runs lint against go files
+    cmds:
+      - golangci-lint run -v
+
+  test:
+    desc: runs go test against go files
+    cmds:
+      - go test -v -cover ./...
+
+  default:
+    cmds:
+      - task: lint
+      - task: build
+      - task: test
+      - task: integration_test:default

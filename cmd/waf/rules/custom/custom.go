@@ -5,7 +5,6 @@ package custom
 // This file is auto-generated. Modifications to this file may be overwritten.
 
 import (
-	"github.com/EdgeCast/ec-sdk-go/edgecast"
 	"github.com/EdgeCast/ec-sdk-go/edgecast/waf"
 	"github.com/EdgeCast/ec-sdk-go/edgecast/waf/rules/custom"
 	"github.com/edgecast/ec-cli/cmd/internal"
@@ -13,17 +12,12 @@ import (
 )
 
 func createClient() *waf.WafService {
-	idsCredentials := edgecast.IDSCredentials{
-		ClientID:     "",
-		ClientSecret: "",
-		Scope:        "",
-	}
-
-	sdkConfig := edgecast.NewSDKConfig()
-	sdkConfig.IDSCredentials = idsCredentials
+	sdkConfig := internal.CheckResult(
+		internal.LoadConfig(),
+	)
 
 	return internal.CheckResult(
-		waf.New(sdkConfig),
+		waf.New(*sdkConfig),
 	)
 }
 

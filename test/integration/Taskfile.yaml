@@ -1,0 +1,23 @@
+# https://taskfile.dev
+version: '3'
+
+
+output: prefixed
+
+
+
+includes:
+  waf:
+    desc: runs all waf integration tests
+    taskfile: ./waf/Taskfile.yaml
+
+
+tasks:
+
+  run:
+    desc: "run will execute the entire integration test suite"
+    cmds:
+      - task: waf:run
+  default:
+    cmds:
+      - task: run

@@ -1,0 +1,1 @@
+{"CustomRuleSet":{"directive":[{"sec_rule":{"action":{"id":"66000000","msg":"Invalid user agent.","t":["NONE"]},"operator":{"type":"CONTAINS","value":"bot"},"variable":[{"type":"REQUEST_HEADERS","match":[{"value":"User-Agent"}]}]}}],"name":"Deny bots"},"AccountNumber":"16B02E"}
