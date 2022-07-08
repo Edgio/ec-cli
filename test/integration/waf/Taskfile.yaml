@@ -1,0 +1,72 @@
+# https://taskfile.dev
+version: '3'
+
+
+output: prefixed
+
+vars:
+  JSON_FILES: "test/integration/waf"
+
+
+tasks:
+  access_AddCustomRuleSet:
+    dir: ../..
+    cmds:
+      - ./cli waf access AddCustomRuleSet -i='{{.JSON}}'
+      #- ./cli waf access AddCustomRuleSet -f={{.JSON_PATH}}
+    vars:
+      JSON_PATH: "{{.JSON_FILES}}/add_custom_ruleset.json"
+      JSON:
+        sh: cat {{.JSON_PATH}}
+
+  access_DeleteCustomRuleSet:
+    dir: ../..
+    cmds:
+      - ./cli waf access DeleteCustomRuleSet -i='{{.JSON}}'
+      #- ./cli waf access DeleteCustomRuleSet -f={{.JSON_PATH}}
+    vars:
+      JSON_PATH: "{{.JSON_FILES}}/delete_custom_ruleset.json"
+      JSON:
+        sh: cat {{.JSON_PATH}}
+
+  access_GetAllCustomRuleSets:
+    dir: ../..
+    cmds:
+      - ./cli waf access GetAllCustomRuleSets -i='{{.JSON}}'
+      #- ./cli waf access GetAllCustomRuleSets -f={{.JSON_PATH}}
+    vars:
+      JSON_PATH: "{{.JSON_FILES}}/get_all_custom_rulesets.json"
+      JSON:
+        sh: cat {{.JSON_PATH}}
+
+  access_GetCustomRuleSet:
+    dir: ../..
+    cmds:
+      - ./cli waf access GetCustomRuleSet -i='{{.JSON}}'
+      #- ./cli waf access GetCustomRuleSet -f={{.JSON_PATH}}
+    vars:
+      JSON_PATH: "{{.JSON_FILES}}/get_custom_ruleset.json"
+      JSON:
+        sh: cat {{.JSON_PATH}}
+
+  access_UpdateCustomRuleSet:
+    dir: ../..
+    cmds:
+      - ./cli waf access UpdateCustomRuleSet -i='{{.JSON}}'
+      #- ./cli waf access UpdateCustomRuleSet -f={{.JSON_PATH}}
+    vars:
+      JSON_PATH: "{{.JSON_FILES}}/update_custom_ruleset.json"
+      JSON:
+        sh: cat {{.JSON_PATH}}
+  run:
+    desc: "execute the waf test suite"
+    cmds:
+      - task: access_AddCustomRuleSet
+      - task: access_GetAllCustomRuleSets
+      - task: access_DeleteCustomRuleSet
+      - task: access_GetCustomRuleSet
+      - task: access_UpdateCustomRuleSet
+
+  default:
+    cmds:
+      - task: run
